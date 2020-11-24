@@ -67,8 +67,10 @@ const char* UTC_TIME = -3;
 
 void setup{
     // ... //
+    connect_to_internet();
     timeClient.begin();
     timeClient.setTimeOffset(UTC_TIME*3600);
+    timeClient.update();
     Log::setNTP(&timeClient);
 }
 ```
