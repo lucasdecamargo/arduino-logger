@@ -15,21 +15,21 @@ This is a **static class** implemented as an alternative to the conventional `Ar
 
 #### Usage
 
-You must redefine the class type passing the correct class template `T`. This template should be a valid MQTT Client class like `PubSubClient` or `uMQTTBroker`. Use `typedef` to simplify its definition at the global scope of your code:
+You must redefine the class type passing the correct class template `T`. This template should be a valid MQTT Client class like `PubSubClient` or `uMQTTBroker`. Use `typedef` to simplify its definition at the global scope of your code:  
 `typedef Logger<PubSubClient> Log;`
 
-You can also define a logging level, `LOG_LEVEL_WARNING` will be defined as default.
+You can also define a logging level, `LOG_LEVEL_WARNING` will be defined as default.  
 `Log::setLevel(Log::LOG_LEVEL_INFO);`
 
-To print out to serial port, on your Arduino Setup scope, call:
+To print out to serial port, on your Arduino Setup scope, call:  
 `Log::setSerial(&Serial);`
 
-To activate MQTT logging, use the method below:
+To activate MQTT logging, use the method below:  
 `Logger<T>::setMQTT(T * mqtt, String topic = "log");`
 
-To log a message, use one of the logging methods (described below) *e.g.*
-`Log::error("Some error message.");`
-`Log::warning("Some warning message.");`
+To log a message, use one of the logging methods (described below) *e.g.*  
+`Log::error("Some error message.");`  
+`Log::warning("Some warning message.");`  
 `Log::info("Some info message.");`
 
 **Note:** remember that this is a static templated class; so different template definitions will result in duplicated static class construction.
@@ -49,8 +49,8 @@ Defines and activates a serial output class. You would normally pass Arduino's S
 
 #### `static void setMQTT(T * mqtt, String topic = "log")`
 
-Defines and activates MQTT logging. Note that type `T` must correspond to your MQTT client class. This MQTT client class **should** have a publish method like below:
-`publish(const char* topic, const uint8_t * payload, unsigned int plength);`
+Defines and activates MQTT logging. Note that type `T` must correspond to your MQTT client class. This MQTT client class **should** have a publish method like below:  
+`publish(const char* topic, const uint8_t * payload, unsigned int plength);`  
 If it doesn't, you can wrap your class by using inheritance and redefining it's publish method. It was tested with `PubSubClient` and `uMQTTBroker`.
 
 #### `static void setNTP(NTPClient * ntp)`
